@@ -1,4 +1,5 @@
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
+import Img from "/public/img.png"
 import { AppBar, Toolbar, Box, Typography, Button } from "@mui/material";
 import Link from "next/link";
 
@@ -26,7 +27,7 @@ export default function BlogHeader() {
       >
         {/* Картинка */}
         <Box sx={{ flexShrink: 0 }}>
-          <Image src="/img.png" alt="" width={540} height={621} />
+          <ExportedImage src={Img} alt="" width={540} height={621} />
         </Box>
 
         {/* Текст + кнопка */}

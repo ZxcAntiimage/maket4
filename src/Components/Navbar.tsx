@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
 import { AppBar, Toolbar, Button, IconButton, Box, useMediaQuery, useTheme } from "@mui/material";
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import MenuIcon from "@mui/icons-material/Menu";
-
+import icon from "/public/icon.svg"
 export default function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -35,9 +35,9 @@ export default function Navbar() {
         }}
       >
         <Box sx={{ flexGrow: isMobile ? 1 : 0 }}>
-          <Image 
+          <ExportedImage
             alt="Логотип" 
-            src="/icon.svg" 
+            src={icon}
             width={isMobile ? 100 : 143} 
             height={isMobile ? 25 : 35} 
             priority

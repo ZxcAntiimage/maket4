@@ -1,10 +1,16 @@
 'use client';
 import { AppBar, Toolbar, Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import Link from "next/link";
 
+// Импорт изображений
+import logo from "/public/icon.svg";
+import socialIcon1 from "/public/icon4.svg";
+import socialIcon2 from "/public/icon5.svg";
+import socialIcon3 from "/public/icon6.svg";
+
 export default function Footer() {
-   const theme = useTheme();
+  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const menuSections = [
@@ -22,7 +28,11 @@ export default function Footer() {
     }
   ];
 
-  const socialIcons = ["/icon4.svg", "/icon5.svg", "/icon6.svg"];
+  const socialIcons = [
+    { icon: socialIcon1, alt: "Instagram" },
+    { icon: socialIcon2, alt: "Facebook" },
+    { icon: socialIcon3, alt: "Twitter" }
+  ];
 
   return (
     <AppBar
@@ -48,15 +58,15 @@ export default function Footer() {
           gap: { xs: 3, md: 0 }
         }}
       >
-
+        {/* Лого и контакты */}
         <Box sx={{ 
           display: "flex", 
           flexDirection: "column",
           order: { xs: 1, md: 1 },
           width: { xs: "100%", md: "auto" }
         }}>
-          <Image 
-            src="/icon.svg" 
+          <ExportedImage 
+            src={logo}
             alt="Логотип компании" 
             width={isMobile ? 120 : 143} 
             height={isMobile ? 30 : 35} 
@@ -78,7 +88,7 @@ export default function Footer() {
           </Typography>
         </Box>
 
-
+        {/* Меню */}
         <Box
           sx={{
             display: "flex",
@@ -100,8 +110,10 @@ export default function Footer() {
                   mb: 1,
                 }}
               >
-                <Link href="/page" passHref>
-                  {section.title}
+                <Link href="#" passHref legacyBehavior>
+                  <a style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {section.title}
+                  </a>
                 </Link>
               </Typography>
 
@@ -115,14 +127,18 @@ export default function Footer() {
                     fontSize: { xs: 14, sm: 16 }
                   }}
                 >
-                  <Link href="/page" passHref>
-                    {item}
+                  <Link href="#" passHref legacyBehavior>
+                    <a style={{ textDecoration: 'none', color: 'inherit' }}>
+                      {item}
+                    </a>
                   </Link>
                 </Typography>
               ))}
             </Box>
           ))}
         </Box>
+
+        {/* Соцсети и копирайт */}
         <Box
           sx={{
             display: "flex",
@@ -139,14 +155,17 @@ export default function Footer() {
             gap: { xs: 2, sm: 3 },
             order: { xs: 2, sm: 1 }
           }}>
-            {socialIcons.map((src) => (
-              <Image 
-                key={src} 
-                src={src} 
-                alt="Социальная сеть" 
-                width={24} 
-                height={24} 
-              />
+            {socialIcons.map(({ icon, alt }, index) => (
+              <Link href="#" passHref key={index} legacyBehavior>
+                <a>
+                  <ExportedImage
+                    src={icon}
+                    alt={alt}
+                    width={24}
+                    height={24}
+                  />
+                </a>
+              </Link>
             ))}
           </Box>
 
